@@ -1,6 +1,6 @@
 import java.util.Calendar;
 
-public class JulianDate {
+public class JulianDate implements JulianDates {
 	
 	private int day;
 	private int month;
@@ -63,4 +63,22 @@ public class JulianDate {
 		   return Math.floor(julian);
 		 }
 	
+public abstract class MetricDate extends JulianDate implements JulianDates{
+	
+	private int metYear;
+    private int metMonth;
+    private int metDay;
+    
+    public void metricDateAlgorithm(){
+        metYear = (int) (julian/1000);
+        metMonth = (int) ((julian%1000)/100);
+        metDay = (int) ((julian%1000)%100);
+        System.out.println("Metric Date: "+metDay+"."+metMonth+"."+metYear);
+        }
+    
+    public void metricToJulian() {
+    	julian = (metYear * 1000) + (metMonth * 100) + metDay;
+    	System.out.println("Metric date " + metDay + "." + metMonth + "." + metYear + " is equal to the Julian date " + julian);
+    	}
+    }
 }
