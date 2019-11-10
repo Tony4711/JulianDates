@@ -63,7 +63,7 @@ public class JulianDate implements JulianDates {
 		   return Math.floor(julian);
 		 }
 	
-public abstract class MetricDate extends JulianDate implements JulianDates{
+public class MetricDate extends JulianDate{
 	
 	private int metYear;
     private int metMonth;

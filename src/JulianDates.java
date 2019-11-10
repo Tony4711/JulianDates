@@ -4,6 +4,4 @@ public interface JulianDates{
 	int[] setDate(int y, int m, int d);
 	public double julianDateAlgorithm(int[] date);
 	
-	
-	
 }
