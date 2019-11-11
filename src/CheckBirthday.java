@@ -12,19 +12,43 @@ public class CheckBirthday {
 	private int bYear = 0;
 	private double person1 = 0;
 	private double person2 = 0;
-	private String name = "";
+	private String name1 = "";
+	private String name2 = "";
+	private double today;
+	private double birth;
+	private double weekDay;
+	private double daysAlive;
+	
 
 	public static void main(String[] args) {
 		CheckBirthday Birthday = new CheckBirthday();
-		double today = Birthday.getTodaysDate();
-		double birth = Birthday.getBirthday();
-		double weekDay = Birthday.checkForWeekDayOfBirth(birth);
-		Birthday.person1 = Birthday.calculateDaysOnEarth(today, birth);
-		Birthday.checkForSunday(weekDay);
-		Birthday.happyBirthday();
-		Birthday.calculateDaysOnEarthMetric(Birthday.person1);
-		Birthday.divisible100(Birthday.person1);
-		Birthday.compareTwoBirthdays();
+		Birthday.today = Birthday.getTodaysDate(); //get the date of the day	
+	/*
+	 * Uncomment the method you want to run
+	 */
+		//Birthday.calculateForOnePerson();
+		Birthday.calculateForTwoPerson();
+	}
+	
+	private void checkForEvent(double daysAlive) {
+		checkForSunday(weekDay);
+		happyBirthday();
+		divisible100(daysAlive);
+	}
+	
+	private double calculateForOnePerson() {
+		birth = getBirthday(); //Input of the birthday from one user
+		weekDay = checkForWeekDayOfBirth(birth);
+		daysAlive = calculateDaysOnEarth(today, birth);
+		checkForEvent(daysAlive);
+		calculateDaysOnEarthMetric(daysAlive);
+		return daysAlive;
+	}
+	
+	private void calculateForTwoPerson() {
+		compareTwoBirthdays();
+		//checkForEvent(daysAlive);
+		
 	}
 	
 	private void divisible100(double days) {
@@ -42,7 +66,9 @@ public class CheckBirthday {
 	
 	private double calculateDaysOnEarth(double today, double birthday){
 		daysOnEarth = today - birthday;
+		//checkForWeekDayOfBirth(birthday);
 		System.out.println("and you are living on earth since: " + daysOnEarth + " days.");
+		checkForEvent(daysOnEarth);
 		return daysOnEarth;
 	}
 	
@@ -68,19 +94,19 @@ public class CheckBirthday {
 	}
 	
 	private void compareTwoBirthdays() {
-		//person1 = calculateDaysOnEarth(getTodaysDate(), getBirthday());
-		person2 = calculateDaysOnEarth(getTodaysDate(), getBirthday());
+		person1 = calculateForOnePerson();
+		person2 = calculateForOnePerson();
 		if (Double.compare(person1, person2) == 0) { 
 			  
             System.out.println("You both are of the same age."); 
         } 
         else if (Double.compare(person1, person2) < 0) { 
   
-            System.out.println("Person 2 is older then person 1."); 
+            System.out.println(name2 + " is older then " + name1 +"."); 
         } 
         else { 
   
-            System.out.println("Person 1 is older then person 2."); 
+            System.out.println(name1 + " is older then " + name2 +"."); 
         } 
 	}
 	
@@ -113,19 +139,30 @@ public class CheckBirthday {
 	}
 	
 	private double getBirthday() {
-		Julian = new JulianDate();
-		System.out.println("Please insert your name and your birthday.");
-		Scanner input = new Scanner(System.in);
-		System.out.println("Name: ");
-	    name = input.nextLine();
-		System.out.println("Day: ");
-		bDay = input.nextInt();
-		System.out.println("Month: ");
-		bMonth = input.nextInt();
-		System.out.println("Year: ");
-		bYear = input.nextInt();
-		julianBirthday = Julian.julianDateAlgorithm(Julian.setDate(bYear, bMonth, bDay));
-		return julianBirthday;
-	}
+        Julian = new JulianDate();
+        if (name1 != "")
+        {
+        	System.out.println();
+            System.out.println("To compare your birthday to another one, a second person is required.");
+        }
+        System.out.println("Please insert your name and your birthday.");
+        System.out.println();
+        Scanner input = new Scanner(System.in);
+        System.out.println("Name: ");
+        if (name1 == "")
+            name1 = input.nextLine();
+        else
+            name2 = input.nextLine();    
+        System.out.println("Day: ");
+        bDay = input.nextInt();
+        System.out.println("Month: ");
+        bMonth = input.nextInt();
+        System.out.println("Year: ");
+        bYear = input.nextInt();
+        System.out.println();
+        julianBirthday = Julian.julianDateAlgorithm(Julian.setDate(bYear, bMonth, bDay));
+        return julianBirthday;
+    }
+
 
 }

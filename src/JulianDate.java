@@ -1,3 +1,4 @@
+
 import java.util.Calendar;
 
 public class JulianDate implements JulianDates {
@@ -9,11 +10,10 @@ public class JulianDate implements JulianDates {
 	private int jM;
 	private int jD;
 	private int jB;
-	private double julian;
+	protected double julian;
 	private int JGREG= 15 + 31*(10+12*1582);
 	private int[] date;
 	private int[] todaysDate;
-
 
 	public static void main(String[] args) 
 	{
@@ -62,23 +62,4 @@ public class JulianDate implements JulianDates {
 		   }
 		   return Math.floor(julian);
 		 }
-	
-public class MetricDate extends JulianDate{
-	
-	private int metYear;
-    private int metMonth;
-    private int metDay;
-    
-    public void metricDateAlgorithm(){
-        metYear = (int) (julian/1000);
-        metMonth = (int) ((julian%1000)/100);
-        metDay = (int) ((julian%1000)%100);
-        System.out.println("Metric Date: "+metDay+"."+metMonth+"."+metYear);
-        }
-    
-    public void metricToJulian() {
-    	julian = (metYear * 1000) + (metMonth * 100) + metDay;
-    	System.out.println("Metric date " + metDay + "." + metMonth + "." + metYear + " is equal to the Julian date " + julian);
-    	}
-    }
 }
