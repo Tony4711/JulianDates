@@ -18,7 +18,11 @@ public class JulianDate implements JulianDates {
 	public static void main(String[] args) 
 	{
 		JulianDate Julian = new JulianDate();
-		//Print the returned Julian Date from the method, needs a parameter of  an Array that represents the todays date, takes the date from the Calendar instance of java
+		/*
+		 * Print the returned Julian Date from the method,
+		 * needs a parameter of  an Array that represents the todays date, 
+		 * takes the date from the Calendar instance of java.
+		 */
 		System.out.println(Julian.julianDateAlgorithm(Julian.setDate(1997, 3, 19)));
 	}
 	
